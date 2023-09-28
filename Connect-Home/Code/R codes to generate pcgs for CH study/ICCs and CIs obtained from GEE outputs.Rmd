@@ -1,0 +1,67 @@
+---
+title: "ICCs SEs CIs for CH results"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R function
+```{r}
+FisherZtoICC=function(alpha,sd,df){
+  ICC = (exp(alpha)-1)/ (exp(alpha)+1) #Estimated ICC using inversion FishersZ function
+  ICC_SE = sd*2*exp(alpha)/(1+exp(alpha))^2
+  alphaCI = c(alpha-qt(0.975,4)*sd,alpha+qt(0.975,4)*sd) #Estimated 95% CI using alpha using t-distribution with df=4
+  #Estimated 95% CI of ICC using 95% CI of alpha using inversion FishersZ function
+  ICC_CI = c((exp(alphaCI[1])-1)/(exp(alphaCI[1])+1),(exp(alphaCI[2])-1)/(exp(alphaCI[2])+1)) 
+  print(paste0("Estimated 95% CI for Fisher's Z correlation parameter =", round(alpha,3), " is ", list(round(alphaCI,3))))
+  print(paste0("Estimated ICC for Fisher's Z correlation parameter =", alpha, " is ", round(ICC,3)))
+  print(paste0("Estimated SE (delta method) of ICC =", round(ICC,3), " is ", list(round(ICC_SE,3))))
+  print(paste0("Estimated 95% CI for ICC =", round(ICC,3), " is ",list(round(ICC_CI,3))))
+}
+```
+# For analysis results under GEEMAEE
+## transferring correlation parameters under fisher Z to ICC scale
+## For average intervention effects model, 
+```{r}
+
+FisherZtoICC(alpha=0.448,sd = 0.1847,df=4)
+FisherZtoICC(alpha=0.291,sd = 0.1442,df=4)
+
+```
+## For incremental intervention effects model, 
+
+```{r}
+FisherZtoICC(alpha=0.205,sd = 0.0982,df=4)
+FisherZtoICC(alpha=0.105,sd = 0.1075,df=4)
+```
+
+## For extended incremental intervention effects model, 
+
+```{r}
+FisherZtoICC(alpha=0.241,sd = 0.1153,df=4)
+FisherZtoICC(alpha=0.096,sd = 0.0495,df=4)
+```
+# For analysis results under GEEUEE
+## For average intervention effects model, 
+## transferring correlation parameters under fisher Z to ICC scale 
+```{r}
+FisherZtoICC(alpha=0.378,sd = 0.3207,df=4)
+FisherZtoICC(alpha=0.207,sd = 0.1117,df=4)
+```
+## For incremental intervention effects model, 
+```{r}
+FisherZtoICC(alpha=0.171,sd = 0.0337,df=4)
+FisherZtoICC(alpha=0.076,sd = 0.0548,df=4)
+```
+## For extended incremental intervention effects model, 
+```{r}
+FisherZtoICC(alpha=0.209,sd = 0.8075,df=4)
+FisherZtoICC(alpha=0.070,sd = 0.2867,df=4)
+```
+
+
+
