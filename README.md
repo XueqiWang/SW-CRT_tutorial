@@ -6,4 +6,4 @@ For questions or comments about the Connect-Home Analysis please contact Ying Zh
 
 For questions or comments about the HHN Analysis please contact Xueqi Wang at xueqi.wang@yale.edu.
 
-For questions or comments about the HIV Testing Study please contact John S. Preisser at john_preisser@unc.edu.
+For questions or comments about the HIV Testing Analysis please contact John S. Preisser at john_preisser@unc.edu.
